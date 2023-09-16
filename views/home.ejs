@@ -1,0 +1,71 @@
+<link rel="stylesheet" type="text/css" href="/css/home.css" />
+
+<!--  HOME CONTAINER IS USED TO DISPLAY THE TODAY CURRENT TASKS........... -->
+<div id="homeContainer">
+  <div id="addHabbit">
+    <form id="HabitCF">
+      <fieldset id="addHabbit-container">
+        <legend>Add Habbits</legend>
+        <input
+          type="text"
+          name="TaskName"
+          id="taskName"
+          placeholder="Enter your new habbit"
+        />
+        <input
+          type="number"
+          name="targetTask"
+          onkeypress="return event.charCode >= 48"
+          min="1"
+          id="targetTask"
+          placeholder="days"
+        />
+
+        <select name="taskCatogiry" id="status">
+          <option value="Daily">Daily</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
+        </select>
+
+        <input type="time" name="time" placeholder="Time" />
+        <input type="submit" id="submitBtn" value="Add" />
+      </fieldset>
+    </form>
+  </div>
+
+  <div id="taskContainer">
+    <div id="HabitContainer">
+      <% let i=0 %> <% for( let task of tasks){%>
+      <div class="currentHabbit" id="habit-<%=task._id%>">
+        <div>
+          <h2><%=task.TaskName %></h2>
+        </div>
+        <div class="habitInfo">
+          <p id="days-<%=currentSt[i]._id%>">
+            Days:<%=task.Days%>/<%=task.targetTask%>
+          </p>
+          <p><%=task.catogiry%></p>
+          <p><%=task.time%></p>
+          <p>
+            <label for="taskStatus">Status:</label>
+            <select
+              name="taskStatus"
+              id="<%=currentSt[i]._id%>"
+              class="habitStatus"
+            >
+              <option value="none" selected disabled hidden>
+                <%=currentSt[i].Status%>
+              </option>
+              <option value="Done">Done</option>
+              <option value="Not Done">Not Done</option>
+            </select>
+          </p>
+          <button class="deleteHF" id="<%=task._id%>">Remove</button>
+        </div>
+      </div>
+      <% i++ %> <%}%>
+    </div>
+  </div>
+</div>
+
+<script src="/js/home.js"></script>
